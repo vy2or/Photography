@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0d0e10">
+<title>Danil — Photographer</title>
+<meta name="description" content="Photography and links by Danil.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0e10;--surface:#15171a;--text:#e8eaee;--mute:#8f949c;--line:rgba(232,234,238,.14);--accent:#8fb0f0;--serif:"Instrument Serif",Georgia,"Times New Roman",serif;--sans:"Instrument Sans","Helvetica Neue",Arial,sans-serif;color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.soft{border-radius:16px;background:var(--surface)}
+
+  /* HERO: one photograph, full bleed */
+  .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:28px clamp(20px,5vw,64px) clamp(32px,5vw,56px);overflow:hidden;background:var(--bg)}
+  .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:settle 2.6s cubic-bezier(.2,.7,.2,1) both}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,14,16,.6) 0%,rgba(13,14,16,.05) 38%,rgba(13,14,16,.82) 100%)}
+  .hero nav,.hero .bottom{position:relative;z-index:2}
+  .hero nav{display:flex;justify-content:space-between;align-items:center}
+  .mark{font-family:var(--serif);font-size:1.6rem;text-decoration:none}
+  .hero nav div{display:flex;gap:32px}
+  .hero nav div a{text-decoration:none;font-size:.95rem;color:rgba(232,234,238,.8);transition:color .2s}
+  .hero nav div a:hover{color:#fff}
+  .hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(5rem,21vw,19rem);line-height:.8;letter-spacing:-.03em}
+  .role{font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,3.4vw,2.6rem);color:var(--accent);margin-top:14px}
+  .row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-top:36px}
+  .row p{max-width:36ch;color:rgba(232,234,238,.78)}
+  .cta{display:inline-block;border:1px solid rgba(232,234,238,.5);padding:13px 28px;border-radius:999px;text-decoration:none;font-weight:500;backdrop-filter:blur(8px);transition:background .2s,color .2s}
+  .cta:hover{background:var(--text);color:var(--bg)}
+  @keyframes settle{from{opacity:0;transform:scale(1.07)}to{opacity:1;transform:none}}
+
+  /* SECTIONS */
+  section{padding:clamp(72px,10vw,140px) clamp(20px,5vw,64px)}
+  h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,6.5vw,5.5rem);letter-spacing:-.02em;line-height:1}
+  .intro{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:48px}
+  .intro p{max-width:38ch;color:var(--mute)}
+  .preview{columns:3 260px;column-gap:14px}
+  .preview a{display:block;margin:0 0 14px;break-inside:avoid;overflow:hidden}
+  .preview img{display:block;width:100%;height:auto;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+  .preview a:hover img{transform:scale(1.035)}
+.reveal{opacity:0;transform:translateY(40px) scale(.97);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+  .gallery-link{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:40px;padding:28px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-decoration:none;font-family:var(--serif);font-size:clamp(1.8rem,4.2vw,3.2rem);transition:color .2s}
+  .gallery-link:hover{color:var(--accent)}
+  .gallery-link svg{flex:none;width:1.1em;height:1.1em;transition:transform .3s}
+  .gallery-link:hover svg{transform:translateX(8px)}
+
+  /* CONTACT */
+  .links ul{list-style:none;margin-top:48px;border-top:1px solid var(--line)}
+  .links li a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;padding:26px 0;border-bottom:1px solid var(--line);text-decoration:none;transition:padding .3s,color .2s}
+  .links li a:hover{padding-left:16px;color:var(--accent)}
+  .links .name{font-family:var(--serif);font-size:clamp(1.9rem,4.4vw,3.4rem);line-height:1.1}
+  .links .handle{color:var(--mute)}
+  footer{padding:28px clamp(20px,5vw,64px);color:var(--mute);font-size:.9rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;border-top:1px solid var(--line)}
+  @media (max-width:720px){.hero nav div{gap:20px}}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-bg{animation:none}.preview img,.gallery-link svg,.links li a{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <!-- HERO PHOTO: change the file name on this line to use a different photograph -->
+  <img class="hero-bg" src="photography/photos/Ocean - Sony a 7 R iii (1 of 1).jpg" alt="" fetchpriority="high">
+  <nav>
+    <a class="mark" href="#">Danil</a>
+    <div><a href="#photography">Work</a><a href="photography/">Gallery</a><a href="#links">Contact</a></div>
+  </nav>
+  <div class="bottom">
+    <h1>Danil</h1>
+    <p class="role">Photographer</p>
+    <div class="row">
+      <p>Photographs from the streets, the coast and everything in between. Based in Asturias.</p>
+      <a class="cta" href="photography/">View the gallery</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="photography">
+    <div class="intro">
+      <h2>Selected work</h2>
+      <p>A selection of recent photographs. The full collection lives in the gallery.</p>
+    </div>
+
+    <!--
+      PREVIEW PHOTOS: paste one line per photo inside the div below.
+      Use the same file names as in the gallery, with "photography/" in front:
+      <img src="photography/photos/my-photo.jpg">
+      Clicking a photo opens the gallery. About 4 to 6 photos looks best.
+    -->
+    <div class="preview">
+      <img src="photography/photos/Ocean - Sony a 7 R iii (1 of 1).jpg">
+      <img src="photography/photos/Sing -peligro- - Sony a 7 R iii (1 of 1).jpg">
+      <img src="photography/photos/Old house framed in grass (new version) - Sony a 7 R iii (1 of 1).jpg">
+      <img src="photography/photos/Warm forest road -  Sony a 7 R iii (1 of 1).jpg">
+    </div>
+
+    <a class="gallery-link" href="photography/">
+      Open the full gallery
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+    </a>
+  </section>
+
+  <section id="links" class="links">
+    <h2>Find me online</h2>
+    <ul>
+      <li><a href="https://www.instagram.com/danil.arw/" target="_blank" rel="noopener noreferrer"><span class="name">Instagram</span><span class="handle">@danil.arw</span></a></li>
+      <li><a href="mailto:vy2or.v@gmail.com"><span class="name">Email</span><span class="handle">vy2or.v@gmail.com</span></a></li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <span>© 2026 Danil</span>
+  <span>All photographs are my own.</span>
+</footer>
+
+<script>
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const seen = new IntersectionObserver(entries => {
+    let n = 0;
+    entries.filter(e => e.isIntersecting).forEach(e => {
+      e.target.style.transitionDelay = (n++ * 110) + 'ms';
+      e.target.classList.add('in');
+      seen.unobserve(e.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+  function reveal(el, img) {
+    if (reduce) return;
+    el.classList.add('reveal');
+    const watch = () => seen.observe(el);
+    if (img.complete) watch(); else img.addEventListener('load', watch, { once: true });
+    img.addEventListener('error', () => el.classList.add('in'), { once: true });
+  }
+  function altFrom(img) {
+    if (img.alt) return;
+    const file = decodeURIComponent(img.getAttribute('src').split('/').pop());
+    img.alt = file.replace(/\.[^.]+$/, '').replace(/\s*-\s*Sony.*$/i, '').trim();
+  }
+
+  // Preview photos: wrap each <img> in a link to the gallery.
+  document.querySelectorAll('.preview > img').forEach(img => {
+    img.decoding = 'async';
+    altFrom(img);
+    const link = document.createElement('a');
+    link.href = 'photography/';
+    link.className = 'soft';
+    img.replaceWith(link);
+    link.appendChild(img);
+    reveal(link, img);
+  });
+</script>
+
+</body>
+</html>
