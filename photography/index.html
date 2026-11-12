@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0d0e10">
+<title>Gallery — Danil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0e10;--surface:#15171a;--text:#e8eaee;--mute:#8f949c;--line:rgba(232,234,238,.14);--accent:#8fb0f0;--serif:"Instrument Serif",Georgia,"Times New Roman",serif;--sans:"Instrument Sans","Helvetica Neue",Arial,sans-serif;color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.soft{border-radius:16px;background:var(--surface)}
+
+  header{padding:28px clamp(20px,5vw,64px) clamp(40px,6vw,72px)}
+  header .top{display:flex;justify-content:space-between;align-items:center;font-size:.95rem}
+  header a{text-decoration:none;color:rgba(232,234,238,.8);transition:color .2s}
+  header a:hover{color:#fff}
+  header .top span{color:var(--mute)}
+  header h1{font-family:var(--serif);font-weight:400;font-size:clamp(4rem,14vw,11rem);letter-spacing:-.03em;line-height:.85;margin-top:clamp(40px,7vw,88px)}
+  main{padding:0 clamp(20px,5vw,64px) 96px}
+
+  /* GALLERY: columns layout. Each photo keeps its own shape, so any size or
+     orientation fits and adding or removing photos never breaks anything. */
+  .gallery{columns:3 280px;column-gap:14px}
+  .gallery img{display:block;width:100%;height:auto;margin:0 0 14px;break-inside:avoid;background:var(--surface);border-radius:16px;cursor:zoom-in;transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1),filter .25s}
+  .gallery img:hover{filter:brightness(.85)}
+  .gallery img:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+  .gallery img.reveal{opacity:0;transform:translateY(40px) scale(.97)}
+  .gallery img.reveal.in{opacity:1;transform:none}
+
+  dialog{border:0;padding:0;background:transparent;max-width:96vw;max-height:96vh;margin:auto;overflow:visible}
+  dialog::backdrop{background:rgba(6,7,8,.95)}
+  dialog img{border-radius:16px;display:block;max-width:92vw;max-height:90vh;width:auto;height:auto}
+  .ctl{position:fixed;background:rgba(232,234,238,.1);color:var(--text);border:1px solid rgba(232,234,238,.25);border-radius:999px;font:500 .9rem var(--sans);cursor:pointer;backdrop-filter:blur(8px);transition:background .2s}
+  .ctl:hover{background:rgba(232,234,238,.22)}
+  .close{top:16px;right:16px;padding:9px 18px}
+  .prev,.next{top:50%;width:46px;height:46px;font-size:1.5rem;line-height:1;transform:translateY(-50%)}
+  .prev{left:16px}.next{right:16px}
+  footer{padding:28px clamp(20px,5vw,64px);color:var(--mute);font-size:.9rem;border-top:1px solid var(--line)}
+  @media (prefers-reduced-motion:reduce){.gallery img{transition:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="top"><a href="../">Back to home</a><span id="count"></span></div>
+  <h1>Gallery</h1>
+</header>
+
+<main>
+  <!--
+    ADD A PHOTO: paste one line per photo inside the gallery div below:
+    <img src="photos/my-photo.jpg">
+    Put the image files in the "photos" folder next to this page.
+    The page adds the rest (alt text, click to enlarge, animation) by itself.
+  -->
+  <div class="gallery">
+    <img src="photos/Peakj mirror photo - Sony a 7 R iii-1.jpg">
+    <img src="photos/A busy street in Oviedo at night - Sony a 7 R iii-1.jpg">
+    <img src="photos/A lantern during golden hour -  Sony a 7 R iii-1.jpg">
+    <img src="photos/A road in Oviedo  - Sony a 7 R iii-1.jpg">
+    <img src="photos/A sign in golden hour  - Sony a 7 R iii-1.jpg">
+    <img src="photos/A trailer next to a street lamp  - Sony a 7 R iii-1.jpg">
+    <img src="photos/Basketball ring - Sony a 7 R iii-1.jpg">
+    <img src="photos/Beach in Asturias 2 - Sony a 7 R iii (1 of 1).jpg">
+    <img src="photos/Beautiful shot of a tree at a sunrise  - Sony a 7 R iii (1 of 1).jpg">
+    <img src="photos/Car lights at a foggy night - Sony a 7 R iii-1.jpg">
+    <img src="photos/Cars tailights - old car- Sony a 7 R iii-1.jpg">
+    <img src="photos/Flowers between signs - Sony a 7 R iii (1 of 1).jpg">
+    <img src="photos/Foggy blue light street - Sony a 7 R iii (1 of 1).jpg">
+    <img src="photos/HUCA bukldings  - Sony a 7 R iii (1 of 1).jpg">
+    <img src="photos/Insanely good landscape shot (ig)  - Sony a 7 R iii-1.jpg">
+    <img src="photos/Mercedes logo- Sony a 7 R iii-1.jpg">
+    <img src="photos/Metalic chain on the wood - Sony a 7 R iii-1.jpg">
+    <img src="photos/Mirror 4 -  Sony a 7 R iii-1.jpg">
+    <img src="photos/Mountain with sun beams to it - Sony a 7 R iii (1 of 1).jpg">
+    <img src="photos/Ocean cliffs- Sony a 7 R iii (1 of 1).jpg">
+    <img src="photos/Ocean cliffyss - Sony a 7 R iii (1 of 1).jpg">
+    <img src="photos/Old car from the side - Sony a 7 R iii (1 of 1).jpg">
+    <img src="photos/Old house framed in grass (new version) - Sony a 7 R iii (1 of 1).jpg">
+    <img src="photos/Old mercedes taillight - Sony a 7 R iii (1 of 1).jpg">
+    <img src="photos/Oviedo club sign - Sony a 7 R iii-1.jpg">
+    <img src="photos/Pinecone minimalistic  - Sony a 7 R iii (1 of 1).jpg">
+    <img src="photos/Road with fences on the sides - Sony a 7 R iii (1 of 1).jpg">
+    <img src="photos/Sing -peligro- - Sony a 7 R iii (1 of 1).jpg">
+    <img src="photos/Spiekelet in a windy weather up into the sky  - Sony a 7 R iii-1.jpg">
+    <img src="photos/Spikelet on a becnh -  Sony a 7 R iii (1 of 1).jpg">
+    <img src="photos/Sunset at  autoban - Sony a 7 R iii (1 of 1).jpg">
+    <img src="photos/Two cars at sariego bridge_Long exposure - Sony a 7 R iii-1.jpg">
+    <img src="photos/Two lanterns  - Sony a 7 R iii-1.jpg">
+    <img src="photos/Warm forest road -  Sony a 7 R iii (1 of 1).jpg">
+    <img src="photos/Warm tree shot in oviedo - Sony a 7 R iii-1.jpg">
+    <img src="photos/wheat thingys  - Sony a 7 R iii-1.jpg">
+  </div>
+</main>
+
+<footer>© 2026 Danil. All photographs are my own.</footer>
+
+<dialog id="viewer" aria-label="Photo viewer">
+  <img id="viewer-img" alt="">
+  <button class="ctl prev" type="button" aria-label="Previous photo">&#8249;</button>
+  <button class="ctl next" type="button" aria-label="Next photo">&#8250;</button>
+  <form method="dialog"><button class="ctl close">Close</button></form>
+</dialog>
+
+<script>
+  const gallery = document.querySelector('.gallery');
+  const viewer = document.getElementById('viewer');
+  const viewerImg = document.getElementById('viewer-img');
+  const photos = [...gallery.querySelectorAll('img')];
+  let current = 0;
+
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const seen = new IntersectionObserver(entries => {
+    let n = 0;
+    entries.filter(e => e.isIntersecting).forEach(e => {
+      e.target.style.transitionDelay = (n++ * 110) + 'ms';
+      e.target.classList.add('in');
+      seen.unobserve(e.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+  function reveal(el, img) {
+    if (reduce) return;
+    el.classList.add('reveal');
+    const watch = () => seen.observe(el);
+    if (img.complete) watch(); else img.addEventListener('load', watch, { once: true });
+    img.addEventListener('error', () => el.classList.add('in'), { once: true });
+  }
+  function altFrom(img) {
+    if (img.alt) return;
+    const file = decodeURIComponent(img.getAttribute('src').split('/').pop());
+    img.alt = file.replace(/\.[^.]+$/, '').replace(/\s*-\s*Sony.*$/i, '').trim();
+  }
+
+  photos.forEach(img => {
+    img.decoding = 'async';
+    img.tabIndex = 0;
+    altFrom(img);
+    reveal(img, img);
+  });
+  document.getElementById('count').textContent = photos.length + ' photographs';
+
+  // Click (or Enter) opens a photo large. Arrow keys or the side buttons move between photos.
+  function show(i){
+    current = (i + photos.length) % photos.length;
+    const p = photos[current];
+    viewerImg.src = p.currentSrc || p.src;
+    viewerImg.alt = p.alt;
+    if (!viewer.open) viewer.showModal();
+  }
+  gallery.addEventListener('click', e => { if (e.target.tagName === 'IMG') show(photos.indexOf(e.target)); });
+  gallery.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.tagName === 'IMG') show(photos.indexOf(e.target)); });
+  viewer.querySelector('.prev').addEventListener('click', () => show(current - 1));
+  viewer.querySelector('.next').addEventListener('click', () => show(current + 1));
+  viewer.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+  });
+  viewer.addEventListener('click', e => { if (e.target === viewer || e.target === viewerImg) viewer.close(); });
+</script>
+
+</body>
+</html>
